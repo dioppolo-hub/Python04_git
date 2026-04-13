@@ -2,7 +2,7 @@ import sys
 
 
 def transform_data():
-    print("Transform Data:")
+    sys.stdout.write("\nTransform Data:\n")
     text = (
         "---\n\n"
         "[FRAGMENT 001] Digital preservation protocols established 2087#\n"
@@ -12,17 +12,18 @@ def transform_data():
     )
     f = open(sys.argv[1], "w")
     f.write(text)
-    print(text, end="")
+    sys.stdout.write(text)
     f.close()
 
+
 def new_file():
-    print("Enter new file name (or empty): ", end="")
-    new_file = input()
+    sys.stdout.write("\nEnter new file name (or empty): ")
+    new_file = sys.stdin.readline().strip()
     if new_file == "":
-        print("Not saving data")
+        sys.stdout.write("Not saving data")
         f.close()
     else:
-        print(f"Saving data to '{new_file}'")
+        sys.stdout.write(f"Saving data to '{new_file}'\n")
         n = open(new_file, "w")
         n.write(
             "[FRAGMENT 001] Digital preservation protocols established 2087#\n"
@@ -30,7 +31,7 @@ def new_file():
             "[FRAGMENT 003] Every byte saved is a victory against oblivion#\n"
         )
         n.close()
-        print(f"Data saved in file '{new_file}'\n")
+        sys.stdout.write(f"Data saved in file '{new_file}'\n")
 
 
 if __name__ == "__main__":
@@ -39,30 +40,29 @@ if __name__ == "__main__":
         argc = len(sys.argv)
         if argc == 1:
             raise Exception
-        print("=== Cyber Archives Recovery ===")
+        sys.stdout.write("=== Cyber Archives Recovery ===\n")
         f = open(sys.argv[1])
         cont = f.read()
-        print(cont, end="")
+        sys.stdout.write(cont)
         transform_data()
         new_file()
     except PermissionError:
-        print(f"Accessing file '{sys.argv[1]}'")
-        print(
-            f"Error opening file '{sys.argv[1]}':"
+        sys.stderr.write(f"Accessing file '{sys.argv[1]}'\n")
+        sys.stderr.write(
+            f"[STDERR] Error opening file '{sys.argv[1]}': "
             f"[Errno 13] permission denied: '{sys.argv[1]}'\n"
             )
     except FileNotFoundError:
-        print(f"Accessing file '{sys.argv[1]}'")
-        print(
-            f"Error opening file '{sys.argv[1]}':"
+        sys.stderr.write(f"Accessing file '{sys.argv[1]}'\n")
+        sys.stderr.write(
+            f"[STDERR] Error opening file '{sys.argv[1]}': "
             f"[Errno 2] No such file or directory: '{sys.argv[1]}'\n"
             )
     except Exception:
-        print(f"Usage: '{sys.argv[0]}' <file>\n")
+        sys.stderr.write(f"[STDERR] Usage: '{sys.argv[0]}' <file>\n")
     finally:
         if f is not None:
             f.close()
-            print(f"File '{sys.argv[1]}' closed\n")
+            sys.stdout.write(f"File '{sys.argv[1]}' closed\n")
         else:
             exit()
-
