@@ -15,6 +15,7 @@ def transform_data():
     print(text, end="")
     f.close()
 
+
 def new_file():
     print("Enter new file name (or empty): ", end="")
     new_file = input()
@@ -65,4 +66,3 @@ if __name__ == "__main__":
             print(f"File '{sys.argv[1]}' closed\n")
         else:
             exit()
-
