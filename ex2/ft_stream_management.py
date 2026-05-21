@@ -1,7 +1,8 @@
 import sys
+from typing import TextIO
 
 
-def transform_data():
+def transform_data(f: TextIO):
     sys.stdout.write("\nTransform Data:\n")
     text = (
         "---\n\n"
@@ -16,7 +17,7 @@ def transform_data():
     f.close()
 
 
-def new_file():
+def new_file(f: TextIO):
     sys.stdout.write("\nEnter new file name (or empty): ")
     new_file = sys.stdin.readline().strip()
     if new_file == "":
@@ -44,8 +45,8 @@ def main():
         f = open(sys.argv[1])
         cont = f.read()
         sys.stdout.write(cont)
-        transform_data()
-        new_file()
+        transform_data(f)
+        new_file(f)
     except PermissionError:
         sys.stderr.write(f"Accessing file '{sys.argv[1]}'\n")
         sys.stderr.write(
