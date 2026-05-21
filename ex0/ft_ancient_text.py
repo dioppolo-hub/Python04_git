@@ -1,7 +1,7 @@
 import sys
 
 
-if __name__ == "__main__":
+def main():
     f = None
     try:
         argc = len(sys.argv)
@@ -29,3 +29,7 @@ if __name__ == "__main__":
         if f is not None:
             f.close()
             print(f"File '{sys.argv[1]}' closed")
+
+
+if __name__ == "__main__":
+    main()

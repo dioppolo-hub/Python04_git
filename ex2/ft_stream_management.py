@@ -34,7 +34,7 @@ def new_file():
         sys.stdout.write(f"Data saved in file '{new_file}'\n")
 
 
-if __name__ == "__main__":
+def main():
     f = None
     try:
         argc = len(sys.argv)
@@ -66,3 +66,7 @@ if __name__ == "__main__":
             sys.stdout.write(f"File '{sys.argv[1]}' closed\n")
         else:
             exit()
+
+
+if __name__ == "__main__":
+    main()

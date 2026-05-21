@@ -23,7 +23,7 @@ def secure_archive(file: str, wr: str, cont: str) -> tuple[bool, str]:
         exit()
 
 
-if __name__ == "__main__":
+def main():
     print("=== Cyber Archives Security ===\n")
     cont = (
         "[FRAGMENT 001] Digital preservation protocols established 2087\n"
@@ -46,3 +46,7 @@ if __name__ == "__main__":
         print(f"{t[0]}, Content successfully written to file\n")
     elif wr == "w" and not t[0]:
         print(f"{t[0]}, {t[1]}")
+
+
+if __name__ == "__main__":
+    main()
