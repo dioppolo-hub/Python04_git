@@ -2,40 +2,35 @@ import sys
 from typing import TextIO
 
 
-def transform_data(f: TextIO):
+def transform_data() -> str:
     sys.stdout.write("\nTransform Data:\n")
-    text = (
-        "---\n\n"
-        "[FRAGMENT 001] Digital preservation protocols established 2087#\n"
-        "[FRAGMENT 002] Knowledge must survive the entropy wars#\n"
-        "[FRAGMENT 003] Every byte saved is a victory against oblivion#\n\n"
-        "---\n"
-    )
-    f = open(sys.argv[1], "w")
-    f.write(text)
-    sys.stdout.write(text)
+    sys.stdout.write(f"Accessing file: {sys.argv[1]}")
+    f = open(sys.argv[1])
+    newf: str = ""
+    for line in f:
+        newf += line.strip() + '#\n'
+    sys.stdout.write("---\n")
+    sys.stdout.write(newf)
+    sys.stdout.write("---")
     f.close()
+    return newf
 
 
-def new_file(f: TextIO):
+def new_file(f: TextIO, newf: str) -> None:
     sys.stdout.write("\nEnter new file name (or empty): ")
-    new_file = sys.stdin.readline().strip()
+    new_file = input()
     if new_file == "":
         sys.stdout.write("Not saving data")
         f.close()
     else:
         sys.stdout.write(f"Saving data to '{new_file}'\n")
         n = open(new_file, "w")
-        n.write(
-            "[FRAGMENT 001] Digital preservation protocols established 2087#\n"
-            "[FRAGMENT 002] Knowledge must survive the entropy wars#\n"
-            "[FRAGMENT 003] Every byte saved is a victory against oblivion#\n"
-        )
+        n.write(newf)
         n.close()
         sys.stdout.write(f"Data saved in file '{new_file}'\n")
 
 
-def main():
+def main() -> None:
     f = None
     try:
         argc = len(sys.argv)
@@ -44,9 +39,10 @@ def main():
         sys.stdout.write("=== Cyber Archives Recovery ===\n")
         f = open(sys.argv[1])
         cont = f.read()
-        sys.stdout.write(cont)
-        transform_data(f)
-        new_file(f)
+        print(cont)
+        f.close()
+        newf = transform_data()
+        new_file(f, newf)
     except PermissionError:
         sys.stderr.write(f"Accessing file '{sys.argv[1]}'\n")
         sys.stderr.write(

@@ -23,7 +23,7 @@ def secure_archive(file: str, wr: str, cont: str) -> tuple[bool, str]:
         exit()
 
 
-def main():
+def main() -> None:
     print("=== Cyber Archives Security ===\n")
     cont = (
         "[FRAGMENT 001] Digital preservation protocols established 2087\n"
@@ -31,7 +31,7 @@ def main():
         "[FRAGMENT 003] Every byte saved is a victory against oblivion\n"
     )
     file = "ancient_fragment.txt"
-    wr = "r"
+    wr = "w"
     t: tuple[bool, str] = secure_archive(file, wr, cont)
     if wr == "r" and t[0]:
         print("Using 'secure_archive' to read from a regular file:")

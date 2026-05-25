@@ -1,7 +1,7 @@
 import sys
 
 
-def main():
+def main() -> None:
     f = None
     try:
         argc = len(sys.argv)
