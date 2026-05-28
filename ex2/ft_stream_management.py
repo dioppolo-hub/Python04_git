@@ -18,7 +18,7 @@ def transform_data() -> str:
 
 def new_file(f: TextIO, newf: str) -> None:
     sys.stdout.write("\nEnter new file name (or empty): ")
-    new_file = input()
+    new_file = sys.stdin.readline().strip()
     if new_file == "":
         sys.stdout.write("Not saving data")
         f.close()
