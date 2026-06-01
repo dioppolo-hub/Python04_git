@@ -9,9 +9,9 @@ def transform_data() -> str:
     newf: str = ""
     for line in f:
         newf += line.strip() + '#\n'
-    sys.stdout.write("---\n")
+    sys.stdout.write("\n---\n\n")
     sys.stdout.write(newf)
-    sys.stdout.write("---")
+    sys.stdout.write("\n---\n")
     f.close()
     return newf
 
@@ -20,7 +20,7 @@ def new_file(f: TextIO, newf: str) -> None:
     sys.stdout.write("\nEnter new file name (or empty): ")
     new_file = sys.stdin.readline().strip()
     if new_file == "":
-        sys.stdout.write("Not saving data")
+        sys.stdout.write("Not saving data\n")
         f.close()
     else:
         sys.stdout.write(f"Saving data to '{new_file}'\n")
